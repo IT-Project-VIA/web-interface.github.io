@@ -9,7 +9,22 @@ import {
 } from "@material-ui/core";
 import { Delete } from "@material-ui/icons";
 
-export const ProductTableRow = ({ product, updateProduct, deleteProduct }) => {
+export const ProductTableRow = ({ product, setProducts }) => {
+  const updateProduct = (product) => {
+    setProducts((previousState) => {
+      const products_copy = [...previousState];
+      const prodIdx = products_copy.findIndex((p) => p.id === product.id);
+      products_copy[prodIdx] = product;
+      return products_copy;
+    });
+  };
+
+  const deleteProduct = (product) => {
+    setProducts((previousState) =>
+      previousState.filter((p) => p.id !== product.id)
+    );
+  };
+
   const handleChange = (event) => {
     updateProduct({ ...product, [event.target.name]: event.target.value });
   };
