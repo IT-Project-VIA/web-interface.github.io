@@ -17,14 +17,14 @@ const useStyles = makeStyles((theme) => ({
   },
   saveButton: {
     position: "fixed",
-    bottom: theme.spacing(2),
-    right: theme.spacing(2),
+    bottom: theme.spacing(4),
+    right: theme.spacing(4),
   },
 
   addButton: {
     position: "fixed",
-    bottom: theme.spacing(2) + 64,
-    right: theme.spacing(2),
+    bottom: theme.spacing(4) + 64,
+    right: theme.spacing(4),
   },
 }));
 

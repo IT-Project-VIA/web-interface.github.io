@@ -6,6 +6,8 @@ import {
   TableHead,
   TableRow,
   TableCell,
+  TableFooter,
+  TablePagination,
   TableBody,
 } from "@material-ui/core";
 import { ProductTableRow } from "./ProductTableRow";
@@ -19,6 +21,24 @@ const useStyles = makeStyles(() => ({
 
 export const ProductTable = ({ setProducts, products }) => {
   const classes = useStyles();
+
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+  const shownProducts = products.slice(
+    page * rowsPerPage,
+    page * rowsPerPage + rowsPerPage
+  );
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
   return (
     <TableContainer component={Paper} className={classes.tableContainer}>
       <Table stickyHeader>
@@ -33,7 +53,7 @@ export const ProductTable = ({ setProducts, products }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {products.map((product) => (
+          {shownProducts.map((product) => (
             <ProductTableRow
               key={product.id}
               product={product}
@@ -41,6 +61,18 @@ export const ProductTable = ({ setProducts, products }) => {
             />
           ))}
         </TableBody>
+        <TableFooter>
+          <TableRow>
+            <TablePagination
+              rowsPerPageOptions={[5, 10, 25, 50]}
+              count={products.length}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              onChangePage={handleChangePage}
+              onChangeRowsPerPage={handleChangeRowsPerPage}
+            />
+          </TableRow>
+        </TableFooter>
       </Table>
     </TableContainer>
   );
