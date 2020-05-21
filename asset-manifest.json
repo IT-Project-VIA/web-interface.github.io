@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/web-interface.github.io/static/css/main.5ecd60fb.chunk.css",
+    "main.js": "/web-interface.github.io/static/js/main.f32645e8.chunk.js",
+    "main.js.map": "/web-interface.github.io/static/js/main.f32645e8.chunk.js.map",
+    "runtime-main.js": "/web-interface.github.io/static/js/runtime-main.bdfaa46b.js",
+    "runtime-main.js.map": "/web-interface.github.io/static/js/runtime-main.bdfaa46b.js.map",
+    "static/js/2.011be3f8.chunk.js": "/web-interface.github.io/static/js/2.011be3f8.chunk.js",
+    "static/js/2.011be3f8.chunk.js.map": "/web-interface.github.io/static/js/2.011be3f8.chunk.js.map",
+    "index.html": "/web-interface.github.io/index.html",
+    "precache-manifest.9675a18945038b292de67aecde401390.js": "/web-interface.github.io/precache-manifest.9675a18945038b292de67aecde401390.js",
+    "service-worker.js": "/web-interface.github.io/service-worker.js",
+    "static/css/main.5ecd60fb.chunk.css.map": "/web-interface.github.io/static/css/main.5ecd60fb.chunk.css.map",
+    "static/js/2.011be3f8.chunk.js.LICENSE.txt": "/web-interface.github.io/static/js/2.011be3f8.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.bdfaa46b.js",
+    "static/js/2.011be3f8.chunk.js",
+    "static/css/main.5ecd60fb.chunk.css",
+    "static/js/main.f32645e8.chunk.js"
+  ]
+}
