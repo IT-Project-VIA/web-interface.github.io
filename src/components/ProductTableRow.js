@@ -8,6 +8,7 @@ import {
   Button,
 } from "@material-ui/core";
 import { Delete } from "@material-ui/icons";
+import { ProductAPI } from "../api/ProductAPI";
 
 export const ProductTableRow = ({ product, setProducts }) => {
   const updateProduct = (product) => {
@@ -19,18 +20,20 @@ export const ProductTableRow = ({ product, setProducts }) => {
     });
   };
 
-  const deleteProduct = (product) => {
-    setProducts((previousState) =>
-      previousState.filter((p) => p.id !== product.id)
-    );
+  const deleteProduct = async (product) => {
+    if (await ProductAPI.deleteProduct(product.id)) {
+      setProducts((previousState) =>
+        previousState.filter((p) => p.id !== product.id)
+      );
+    }
   };
 
   const handleChange = (event) => {
     updateProduct({ ...product, [event.target.name]: event.target.value });
   };
 
-  const handleDeleteButton = () => {
-    deleteProduct(product);
+  const handleDeleteButton = async () => {
+    await deleteProduct(product);
   };
 
   return (
@@ -56,30 +59,30 @@ export const ProductTableRow = ({ product, setProducts }) => {
       </TableCell>
       <TableCell align="left">
         <TextField
-          name="specialPrice"
+          name="newPrice"
           type={"number"}
           variant="outlined"
           size={"small"}
           onChange={handleChange}
-          value={product.specialPrice ?? ""}
+          value={product.newPrice ?? ""}
         />
       </TableCell>
       <TableCell align="left">
         <Select
-          name={"targetGender"}
-          value={product.targetGender ?? "none"}
+          name={"sex"}
+          value={product.sex ?? "none"}
           variant={"outlined"}
           onChange={handleChange}
         >
           <MenuItem value={"none"}>None</MenuItem>
-          <MenuItem value={"male"}>Male</MenuItem>
-          <MenuItem value={"female"}>Female</MenuItem>
+          <MenuItem value={"M"}>Male</MenuItem>
+          <MenuItem value={"F"}>Female</MenuItem>
         </Select>
       </TableCell>
       <TableCell align="left">
         <Select
-          name={"targetAge"}
-          value={product.targetAge ?? "none"}
+          name={"age"}
+          value={product.age ?? "none"}
           variant={"outlined"}
           onChange={handleChange}
         >

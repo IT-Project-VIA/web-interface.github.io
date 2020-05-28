@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Snackbar, Fab } from "@material-ui/core";
 import { Save, Add } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 import { ProductAPI } from "../api/ProductAPI";
 import { v4 as uuidv4 } from "uuid";
 import { ProductTable } from "./ProductTable";
+import Alert from "@material-ui/lab/Alert";
 
 const useStyles = makeStyles((theme) => ({
   box: {
@@ -31,12 +32,19 @@ const useStyles = makeStyles((theme) => ({
 export const App = () => {
   const classes = useStyles();
 
-  const [products, setProducts] = useState(ProductAPI.getProducts());
-  const [open, setOpen] = useState(false);
+  const [products, setProducts] = useState([]);
+  const [successIsOpen, successSetOpen] = useState(false);
+  const [failIsOpen, failSetOpen] = useState(false);
+
+  useEffect(() => {
+    ProductAPI.getProducts().then((res) => setProducts(res));
+  }, [setProducts]);
 
   const handleSaveButton = () => {
-    ProductAPI.putProducts(products);
-    setOpen(true);
+    ProductAPI.putProducts(products).then((ok) => {
+      if (ok) successSetOpen(true);
+      else failSetOpen(true);
+    });
   };
 
   const handleAddButton = () => {
@@ -51,11 +59,27 @@ export const App = () => {
           vertical: "bottom",
           horizontal: "left",
         }}
-        open={open}
+        open={successIsOpen}
         autoHideDuration={6000}
-        onClose={() => setOpen(false)}
-        message={<span>Changes saved!</span>}
-      />
+        onClose={() => successSetOpen(false)}
+      >
+        <Alert onClose={() => successSetOpen(false)} severity="success">
+          Successfully Saved!
+        </Alert>
+      </Snackbar>
+      <Snackbar
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "left",
+        }}
+        open={failIsOpen}
+        autoHideDuration={6000}
+        onClose={() => failSetOpen(false)}
+      >
+        <Alert onClose={() => failSetOpen(false)} severity="error">
+          Saving failed!
+        </Alert>
+      </Snackbar>
       <Fab
         className={classes.addButton}
         color={"primary"}
