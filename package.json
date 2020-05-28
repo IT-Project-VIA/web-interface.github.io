@@ -1,6 +1,6 @@
 {
   "name": "web-interface",
-  "proxy": "http://localhost:3001",
+  "proxy": "https://via-fr-database-connector.herokuapp.com/",
   "homepage": "http://it-project-via.github.io/web-interface.github.io",
   "version": "0.1.0",
   "private": true,
