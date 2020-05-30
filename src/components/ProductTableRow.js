@@ -74,7 +74,7 @@ export const ProductTableRow = ({ product, setProducts }) => {
           variant={"outlined"}
           onChange={handleChange}
         >
-          <MenuItem value={"none"}>None</MenuItem>
+          <MenuItem value={"none"}>Any</MenuItem>
           <MenuItem value={"M"}>Male</MenuItem>
           <MenuItem value={"F"}>Female</MenuItem>
         </Select>
@@ -86,7 +86,7 @@ export const ProductTableRow = ({ product, setProducts }) => {
           variant={"outlined"}
           onChange={handleChange}
         >
-          <MenuItem value={"none"}>None</MenuItem>
+          <MenuItem value={"none"}>Any</MenuItem>
           <MenuItem value={1}>1</MenuItem>
           <MenuItem value={5}>5</MenuItem>
           <MenuItem value={10}>10</MenuItem>
